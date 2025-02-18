@@ -37,6 +37,17 @@ if(isset($_GET['remove'])){
 
 	}
 }
+
+if(isset($_POST['qtyIncDec'])){
+	$pId = $_POST['productId'];
+	$pQty = $_POST['productQty'];
+	foreach($_SESSION['cart'] as $key => $value){
+		if($value['productId'] == $pId){
+				$_SESSION['cart'][$key]['productQty'] = $pQty ;
+		}
+
+	}
+}
 			
 ?>
 	<!-- breadcrumb -->
@@ -74,14 +85,14 @@ if(isset($_GET['remove'])){
 								if(isset($_SESSION['cart'])){
 									foreach($_SESSION['cart'] as $value){
 								?>
-								<tr class="table_row">
+					 <tr class="table_row">
 									<td class="column-1">
 										<div class="how-itemcart1">
 											<img src="dashmin/img/products/<?php echo $value['productImage']?>" alt="IMG">
 										</div>
 									</td>
 									<td class="column-2"><?php echo $value['productName']?></td>
-									<td class="column-3">$ <?php echo $value['productPrice']?></td>
+									<td class="column-3"><?php echo $value['productPrice']?></td>
 						<td class="column-4">
 						<div class="wrap-num-product flex-w m-l-auto m-r-0 qtyBox">
 						<input type="hidden" class="productId" value="<?php echo $value['productId']?>">
@@ -91,12 +102,12 @@ if(isset($_GET['remove'])){
 
 						<input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product1" value="<?php echo $value['productQty']?>">
 
-					<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m inc">
+					 <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m inc">
 							<i class="fs-16 zmdi zmdi-plus"></i>
 						</div>
 					</div>
 					</td>
-									<td class="column-5">$ <?php echo $value['productPrice']*$value['productQty']?></td>
+						<td class="column-5"><?php echo $value['productPrice']*$value['productQty']?></td>
 									<td><a href="?remove=<?php echo $value['productId']?>" class="btn btn-danger">Remove</a></td>
 								</tr>
 
