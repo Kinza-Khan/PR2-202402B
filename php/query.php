@@ -64,6 +64,7 @@ if(empty($userEmailErr) && empty($userPasswordErr)){
                             echo "<script>location.assign('dashmin/index.php')</script>";    
                      }   
                      else if($user['role_id']==2){
+                        $_SESSION['userId'] = $user['id'];
                         $_SESSION['userName'] = $user['name'];
                         $_SESSION['userEmail'] = $user['email'];
                         $_SESSION['userRoleID'] = $user['role_id'];

@@ -8,6 +8,7 @@ $(document).on('click','.inc',function(){
         let updatedQty = productQtyInt ;
         console.log(updatedQty);
         updateIncDec(productId,updatedQty);
+        updatePrice($(this),updatedQty);
     }
 });
 $(document).on('click','.dec',function(){
@@ -20,6 +21,7 @@ $(document).on('click','.dec',function(){
             let updatedQty = productQtyInt ;
             console.log(updatedQty);
             updateIncDec(productId,updatedQty);
+            updatePrice($(this),updatedQty);
     }
 });
 
@@ -33,9 +35,14 @@ function  updateIncDec(proId , proQty){
             "productQty" : proQty
         },
         success : function(response){
-                    console.log(response)
+                    // console.log(response)
         }
-
     })    
 
+}
+function updatePrice(element , qty){
+    let price = element.closest('.table_row').find('.column-3').text();
+    console.log(price);
+    let totalAmount = element.closest(".table_row").find('.column-5');
+    totalAmount.text(price*qty);
 }
